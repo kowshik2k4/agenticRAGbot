@@ -40,4 +40,14 @@ class RetrievalAgent:
         results = [self.chunks[i] for i in I[0] if i < len(self.chunks)]
         return results
 
-    def run(
+    def run(self, message):
+        if message["type"] == "INGESTION_COMPLETE":
+            self.store_chunks(message["payload"]["chunks"])
+        elif message["type"] == "QUERY":
+            top_chunks = self.retrieve(message["payload"]["query"])
+            return create_message(
+                sender="RetrievalAgent",
+                receiver="LLMResponseAgent",
+                type_="RETRIEVAL_RESULT",
+                payload={"retrieved_context": top_chunks, "query": message["payload"]["query"]}
+            )
