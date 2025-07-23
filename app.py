@@ -26,7 +26,7 @@ st.markdown(
         }
         </style>
         <div class="footer">
-            © 2025 TalentScout AI. All rights reserved | Built with ❤️ using Streamlit and Gemini AI | Sai Kowsik Tukuntla
+            © 2025 TalentScout AI. All rights reserved | Built with ❤️ using Streamlit | Sai Kowsik Tukuntla
         </div>
         """,
         unsafe_allow_html=True
