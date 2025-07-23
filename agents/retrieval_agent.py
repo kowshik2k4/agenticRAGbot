@@ -3,7 +3,7 @@ from sentence_transformers import SentenceTransformer
 import faiss
 import numpy as np
 from mcp.message import create_message
-
+import os
 class RetrievalAgent:
     def __init__(self):
         model = SentenceTransformer("all-MiniLM-L6-v2", use_auth_token=os.getenv("HF_TOKEN"))
