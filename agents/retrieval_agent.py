@@ -1,24 +1,22 @@
-import torch
 from sentence_transformers import SentenceTransformer
 import faiss
 import numpy as np
 from mcp.message import create_message
-import os
+
 class RetrievalAgent:
     def __init__(self):
-        model = SentenceTransformer("all-MiniLM-L6-v2", use_auth_token=os.getenv("HF_TOKEN"))
-        self.device = "cuda" if torch.cuda.is_available() else "cpu"
-        self.model = self.model.to(self.device)  # ❌ DO NOT use .to() — REMOVE this line!
+        # ⚠️ Do NOT pass device or call .to() at all
+        self.model = SentenceTransformer("sentence-transformers/paraphrase-MiniLM-L6-v2")  # fallback model, small
         self.index = faiss.IndexFlatL2(384)
         self.chunks = []
 
     def store_chunks(self, chunks):
-        embeddings = self.model.encode(chunks, device=self.device)
+        embeddings = self.model.encode(chunks)  # Let it default to CPU
         self.index.add(np.array(embeddings))
         self.chunks.extend(chunks)
 
     def retrieve(self, query):
-        q_embedding = self.model.encode([query], device=self.device)
+        q_embedding = self.model.encode([query])
         D, I = self.index.search(np.array(q_embedding), 5)
         results = [self.chunks[i] for i in I[0] if i < len(self.chunks)]
         return results
