@@ -1,5 +1,6 @@
 from sentence_transformers import SentenceTransformer
 import faiss
+import torch
 from mcp.message import create_message
 import numpy as np
 from torch import device
