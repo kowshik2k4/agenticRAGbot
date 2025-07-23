@@ -7,7 +7,30 @@ st.title("📚 Agentic RAG Chatbot")
 
 uploaded_files = st.file_uploader("Upload your documents", accept_multiple_files=True)
 query = st.text_input("Ask a question")
-
+st.markdown(
+        """
+        <style>
+        .block-container { padding-bottom: 100px !important; }
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #0e1117;
+            text-align: center;
+            padding: 10px;
+            font-size: 0.9em;
+            color: #f9f9f9;
+            border-top: 1px solid #e6e6e6;
+            z-index: 100;
+        }
+        </style>
+        <div class="footer">
+            © 2025 TalentScout AI. All rights reserved | Built with ❤️ using Streamlit and Gemini AI | Sai Kowsik Tukuntla
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 if uploaded_files and query:
     ingestion = IngestionAgent()
     retrieval = RetrievalAgent()
