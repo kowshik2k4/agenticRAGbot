@@ -134,7 +134,6 @@ agentic_rag_chatbot/
 
 ## 📸 Screenshots
 
-> _Add screenshots of your UI here._
 ![UI Landing Page](image.png)
 ---
 
