@@ -6,7 +6,7 @@ from mcp.message import create_message
 
 class RetrievalAgent:
     def __init__(self):
-        self.model = SentenceTransformer("all-MiniLM-L6-v2")
+        model = SentenceTransformer("all-MiniLM-L6-v2", use_auth_token=os.getenv("HF_TOKEN"))
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         self.model = self.model.to(self.device)  # ❌ DO NOT use .to() — REMOVE this line!
         self.index = faiss.IndexFlatL2(384)
