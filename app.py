@@ -1,7 +1,7 @@
 import streamlit as st
 from agents.ingestion_agent import IngestionAgent
 from agents.retrieval_agent import RetrievalAgent
-from agents.llm_response_agent import LLMResponseAgent
+from agents.llm_response import LLMResponseAgent
 
 st.title("📚 Agentic RAG Chatbot")
 
